@@ -1,0 +1,204 @@
+/* Responsive Styles for Buddy */
+
+/* Large Tablets & Medium Laptops (max-width: 850px) */
+@media (max-width: 850px) {
+  .app-container {
+    padding: 1.5rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .greeting-section h1 {
+    font-size: 2.3rem;
+  }
+
+  .interactive-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablets (max-width: 650px) */
+@media (max-width: 650px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  
+  .top-controls {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .sound-panel {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .avatar-wrapper {
+    width: 180px;
+    height: 180px;
+  }
+
+  .avatar-photo-frame {
+    top: 12px;
+    left: 12px;
+    width: 156px;
+    height: 156px;
+  }
+
+  .greeting-section h1 {
+    font-size: 2rem;
+  }
+
+  .greeting-section p {
+    font-size: 1.1rem;
+  }
+
+  .speech-bubble {
+    font-size: 1.05rem;
+    padding: 1rem 1.2rem;
+  }
+
+  .speech-bubble-container {
+    height: 80px;
+  }
+
+  .action-btn {
+    font-size: 0.95rem;
+    padding: 0.9rem 0.8rem;
+  }
+  
+  .mood-selector-container {
+    max-width: 100%;
+  }
+}
+
+/* Small Mobiles (max-width: 440px) */
+@media (max-width: 440px) {
+  .app-container {
+    padding: 1rem 0.8rem;
+    gap: 1rem;
+  }
+
+  .greeting-section h1 {
+    font-size: 1.7rem;
+  }
+
+  .greeting-section p {
+    font-size: 0.95rem;
+  }
+
+  .avatar-wrapper {
+    width: 150px;
+    height: 150px;
+    margin: 0.2rem 0;
+  }
+
+  .avatar-photo-frame {
+    top: 10px;
+    left: 10px;
+    width: 130px;
+    height: 130px;
+    border-width: 3px;
+  }
+
+  .speech-bubble-container {
+    height: 75px;
+    margin-bottom: 0.2rem;
+  }
+
+  .speech-bubble {
+    font-size: 0.9rem;
+    padding: 0.8rem 1rem;
+  }
+
+  .interactive-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+  
+  /* Make the surprise button span full width on small mobiles for balance */
+  #btn-surprise {
+    grid-column: span 2;
+  }
+
+  .action-btn {
+    font-size: 0.85rem;
+    padding: 0.8rem 0.6rem;
+    border-radius: 20px;
+  }
+
+  .mood-bar {
+    gap: 0.2rem;
+  }
+
+  .mood-btn {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.2rem;
+  }
+  
+  .mood-btn span {
+    display: none; /* hide text description on tiny screens, show emoji only */
+  }
+
+  .memory-notes-container {
+    min-height: 60px;
+  }
+
+  .memory-card {
+    font-size: 0.85rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .breathing-modal-card {
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .breathing-circle-container {
+    width: 160px;
+    height: 160px;
+  }
+
+  .breathing-circle, .breathing-circle-base {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .breathing-circle.breath-in,
+  .breathing-circle.breath-hold {
+    transform: scale(1.8);
+  }
+
+  .breathing-text {
+    font-size: 1.3rem;
+  }
+}
+
+/* Landscape Mobile Sizing Adjustments (Short viewports) */
+@media (max-height: 550px) and (orientation: landscape) {
+  body {
+    justify-content: flex-start;
+  }
+  
+  .app-container {
+    min-height: auto;
+    gap: 2rem;
+  }
+
+  header {
+    flex-direction: row;
+  }
+
+  .avatar-wrapper {
+    width: 120px;
+    height: 120px;
+  }
+
+  .avatar-photo-frame {
+    top: 8px;
+    left: 8px;
+    width: 104px;
+    height: 104px;
+  }
+}

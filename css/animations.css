@@ -1,0 +1,330 @@
+/* Companion Avatar Standard Loops */
+.avatar-wrapper {
+  animation: float var(--float-duration) ease-in-out infinite;
+}
+
+#avatar-container {
+  animation: breathe var(--breath-duration) ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+/* Float Animation */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Breathing Animation */
+@keyframes breathe {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 6px 12px var(--shadow-color));
+  }
+  50% {
+    transform: scale(1.025);
+    filter: drop-shadow(0 12px 24px var(--shadow-color));
+  }
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 6px 12px var(--shadow-color));
+  }
+}
+
+/* Waving Arm Animation */
+.waving-arm {
+  animation: wave-action var(--wave-duration) ease-in-out infinite;
+  transform-origin: 30px 145px; /* Pivot around left shoulder coordinates in SVG space */
+}
+
+/* For right arm (usually waves) */
+#avatar-arm-right.waving-arm {
+  transform-origin: 170px 145px; /* Pivot around right shoulder */
+}
+
+@keyframes wave-action {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-35deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+  75% {
+    transform: rotate(-35deg);
+  }
+}
+
+/* Hugging animations */
+.hugging-body {
+  animation: hug-body-action 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes hug-body-action {
+  0%, 100% {
+    transform: scale(1);
+  }
+  20%, 80% {
+    transform: scale(1.15); /* Zoom slightly */
+  }
+}
+
+.hugging-arm-left {
+  animation: hug-arm-left-action 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  transform-origin: 30px 145px;
+}
+
+.hugging-arm-right {
+  animation: hug-arm-right-action 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  transform-origin: 170px 145px;
+}
+
+@keyframes hug-arm-left-action {
+  0%, 100% {
+    transform: rotate(0deg) translate(0, 0);
+  }
+  20%, 80% {
+    transform: rotate(45deg) translate(10px, -15px);
+  }
+}
+
+@keyframes hug-arm-right-action {
+  0%, 100% {
+    transform: rotate(0deg) translate(0, 0);
+  }
+  20%, 80% {
+    transform: rotate(-45deg) translate(-10px, -15px);
+  }
+}
+
+/* Rubber Bounce Bump (Squash & Stretch) */
+.bounce-bump {
+  animation: bounce-bump-action 0.75s cubic-bezier(0.28, 0.84, 0.42, 1) forwards;
+  transform-origin: bottom center;
+}
+
+@keyframes bounce-bump-action {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  20% {
+    transform: scale(1.12, 0.88) translateY(6px);
+  }
+  45% {
+    transform: scale(0.9, 1.12) translateY(-16px);
+  }
+  65% {
+    transform: scale(1.05, 0.95) translateY(2px);
+  }
+  80% {
+    transform: scale(0.98, 1.02) translateY(-1px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Blinking Eye Animation */
+.blinking-eye {
+  animation: blink-action 0.16s ease-in-out forwards;
+  transform-origin: center;
+}
+
+@keyframes blink-action {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.08);
+  }
+}
+
+/* Giggling Head Tilts */
+.head-tilt {
+  animation: tilt-action 1.2s ease-in-out forwards;
+  transform-origin: center bottom;
+}
+
+@keyframes tilt-action {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(-4deg) translateY(-2px);
+  }
+  70% {
+    transform: rotate(4deg) translateY(-2px);
+  }
+}
+
+/* Eye modifications from expressions (worried/bright) */
+#avatar-eye-left.bright,
+#avatar-eye-right.bright {
+  transform: scale(1.2);
+  transform-origin: center;
+  transition: transform 0.4s ease;
+}
+
+#avatar-eye-left.tired,
+#avatar-eye-right.tired {
+  transform: scaleY(0.4) scaleX(0.95);
+  transform-origin: center;
+  transition: transform 0.4s ease;
+}
+
+#avatar-eye-left.worried,
+#avatar-eye-right.worried {
+  transform: translateY(1px) scaleY(0.85);
+  transform-origin: center;
+  transition: transform 0.4s ease;
+}
+
+/* Speech Bubble Fades */
+.fade-out {
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Memory Cards Slides */
+.card-exit {
+  opacity: 0;
+  transform: translateY(6px) scale(0.95);
+}
+
+.card-enter {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Breathing exercise transitions */
+.breathing-circle {
+  transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 4s ease, opacity 0.5s ease;
+}
+
+.breathing-circle.breath-in {
+  transform: scale(2.2);
+  opacity: 0.95;
+  box-shadow: 0 0 50px var(--glow-color);
+}
+
+.breathing-circle.breath-hold {
+  transform: scale(2.2);
+  opacity: 1;
+  box-shadow: 0 0 70px var(--glow-color);
+  animation: pulse-glow-hold 4s ease-in-out infinite;
+}
+
+.breathing-circle.breath-out {
+  transform: scale(1);
+  opacity: 0.7;
+  box-shadow: 0 0 20px var(--glow-color);
+}
+
+@keyframes pulse-glow-hold {
+  0%, 100% {
+    box-shadow: 0 0 70px var(--glow-color);
+  }
+  50% {
+    box-shadow: 0 0 95px var(--glow-color);
+  }
+}
+
+/* Mood Speeds Overrides */
+.speed-slow {
+  --float-duration: 5.5s;
+  --breath-duration: 5.5s;
+}
+
+.speed-sleepy {
+  --float-duration: 7s;
+  --breath-duration: 7s;
+}
+
+.speed-normal {
+  --float-duration: 4s;
+  --breath-duration: 4s;
+}
+
+/* Accessibility: Support for Reduced Motion */
+.reduced-motion *,
+@media (prefers-reduced-motion: reduce) {
+  .avatar-wrapper {
+    animation: none !important;
+  }
+  
+  #avatar-container {
+    animation: none !important;
+  }
+  
+  .waving-arm,
+  .hugging-body,
+  .hugging-arm-left,
+  .hugging-arm-right,
+  .bounce-bump,
+  .blinking-eye,
+  .head-tilt {
+    animation: none !important;
+  }
+
+  .breathing-circle {
+    transition: opacity 4s ease !important; /* switch opacity but skip scaling scale motion */
+    transform: scale(1.6) !important;
+  }
+  
+  .breathing-circle.breath-in {
+    opacity: 0.95;
+  }
+  
+  .breathing-circle.breath-hold {
+    opacity: 1;
+    animation: none !important;
+  }
+  
+  .breathing-circle.breath-out {
+    opacity: 0.4;
+  }
+
+  .speech-bubble,
+  .memory-card {
+    transition: opacity 0.3s ease !important;
+    transform: none !important;
+  }
+
+  .fade-out, .card-exit {
+    opacity: 0 !important;
+    transform: none !important;
+  }
+
+  .fade-in, .card-enter {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  .action-btn:hover {
+    transform: none !important;
+  }
+}
+
+/* Shake Animation for incorrect passcode input */
+.shake-input {
+  animation: shake-action 0.4s ease-in-out;
+}
+
+@keyframes shake-action {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-10px); }
+  40%, 80% { transform: translateX(10px); }
+}

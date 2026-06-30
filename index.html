@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HeartBeat – Your Warm AI Companion</title>
+  <meta name="description" content="A warm, comforting, and cozy companion website that's always cheering for you. Pure client-side, passcode protected.">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Secret Passcode Entry Overlay Screen -->
+  <div id="lock-screen" class="lock-overlay" aria-modal="true" role="dialog" aria-labelledby="lock-header">
+    <div class="glass-panel lock-card">
+      <h2 id="lock-header">Hi ❤️</h2>
+      <p>Enter our secret word to enter...</p>
+      <input type="password" id="passcode-input" placeholder="Type secret word..." aria-label="Secret passcode word">
+      <button id="btn-unlock" class="action-btn single-hug-btn" style="border-radius: 50px; padding: 0.8rem 2.2rem; font-size: 1rem; border: none; background: var(--accent); color: white; cursor: pointer; font-family: var(--font-header); font-weight: 700; width: 100%;">
+        Unlock
+      </button>
+      <p id="lock-feedback" style="color: #ff4d6d; font-family: var(--font-body); font-weight: 600; font-size: 0.9rem; min-height: 1.2rem; margin-top: 0.5rem; text-align: center;" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <!-- Background Particle Overlay Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Background Cozy Drifting Clouds -->
+  <div class="clouds-container" aria-hidden="true">
+    <div class="cloud cloud-1">☁️</div>
+    <div class="cloud cloud-2">☁️</div>
+    <div class="cloud cloud-3">☁️</div>
+  </div>
+
+  <!-- Background Cozy Corner Decorations -->
+  <div class="decorations-container" aria-hidden="true">
+    <div class="deco deco-top-left">🌸✨🌼</div>
+    <div class="deco deco-top-right">💫⭐</div>
+    <div class="deco deco-bottom-left">🍀🌷</div>
+    <div class="deco deco-bottom-right">💖🎀🍭</div>
+  </div>
+
+  <div class="app-container" style="padding-top: 4rem;">
+    
+    <!-- Main Landing Screen Area -->
+    <main role="main">
+      <!-- Text Greeting Above Avatar -->
+      <section class="greeting-section" aria-labelledby="greeting-header">
+        <h1 id="greeting-header">Hi ❤️</h1>
+        <p id="greeting-text">I'm always cheering for you.</p>
+      </section>
+
+      <!-- Active Motivation Speech Bubble -->
+      <div class="speech-bubble-container">
+        <div id="speech-bubble" class="glass-panel speech-bubble" aria-live="polite">
+          <span id="speech-text">I'm so incredibly proud of you, always. ❤️</span>
+        </div>
+      </div>
+
+      <!-- Animated Avatar Wrapper -->
+      <div class="avatar-wrapper">
+        <!-- Avatar Core Display -->
+        <div id="avatar-container" class="speed-normal">
+          <!-- Circular custom photo background element -->
+          <div id="avatar-photo-container" class="avatar-photo-frame">
+            <img id="avatar-photo-img" src="assets/avatar/image.png" alt="Companion photo background">
+          </div>
+
+          <!-- SVG Face & Body Overlays (layered on top of blob or photo background) -->
+          <svg viewBox="0 0 200 200" width="100%" height="100%" class="avatar-svg" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="blobGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffafbd" />
+                <stop offset="100%" stop-color="#ffc3a0" />
+              </linearGradient>
+            </defs>
+
+            <!-- Vector Body Blob -->
+            <path id="avatar-default-body" d="M 45,130 C 45,95 65,70 100,70 C 135,70 155,95 155,130 C 155,160 135,170 100,170 C 65,170 45,160 45,130 Z" fill="url(#blobGrad)" />
+
+            <!-- Left Arm Path -->
+            <path id="avatar-arm-left" d="M 45,135 Q 18,140 28,152 Q 45,150 48,140" fill="#ffafbd" stroke="#5e5061" stroke-width="3.5" stroke-linecap="round" />
+            
+            <!-- Right Arm Path -->
+            <path id="avatar-arm-right" d="M 155,135 Q 182,140 172,152 Q 155,150 152,140" fill="#ffafbd" stroke="#5e5061" stroke-width="3.5" stroke-linecap="round" />
+
+            <!-- Blushing Cheeks -->
+            <ellipse id="avatar-cheek-left" cx="70" cy="108" rx="8" ry="5" fill="#ff8da3" opacity="0.6" style="transition: all 0.4s ease;" />
+            <ellipse id="avatar-cheek-right" cx="130" cy="108" rx="8" ry="5" fill="#ff8da3" opacity="0.6" style="transition: all 0.4s ease;" />
+
+            <!-- Eye Left -->
+            <ellipse id="avatar-eye-left" cx="80" cy="100" rx="5" ry="7" fill="#5e5061" style="transition: all 0.4s ease;" />
+            
+            <!-- Eye Right -->
+            <ellipse id="avatar-eye-right" cx="120" cy="100" rx="5" ry="7" fill="#5e5061" style="transition: all 0.4s ease;" />
+
+            <!-- Smiling/Pouting Mouth Path -->
+            <path id="avatar-mouth" d="M 88,118 Q 100,128 112,118" fill="none" stroke="#5e5061" stroke-width="4.5" stroke-linecap="round" style="transition: all 0.4s ease;" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Single Hug Request Button -->
+      <section style="width: 100%; display: flex; justify-content: center; margin-top: 1rem;">
+        <button id="btn-hug-request" class="glass-panel action-btn single-hug-btn" aria-label="Ask for a Hug" style="max-width: 320px; width: 100%; font-size: 1.2rem; padding: 1.2rem; border-radius: 50px; font-family: var(--font-header); font-weight: 700; color: var(--text-main); border: none; box-shadow: 0 6px 15px var(--shadow-color); cursor: pointer;">
+          🤗 Ask for a Hug
+        </button>
+      </section>
+    </main>
+
+    <!-- Footer Area -->
+    <footer role="contentinfo">
+      <div class="emoji-buttons-container">
+        <button class="emoji-btn" data-emoji="heart" aria-label="Rain Hearts">❤️</button>
+        <button class="emoji-btn" data-emoji="sparkle" aria-label="Rain Sparkles">✨</button>
+        <button class="emoji-btn" data-emoji="star" aria-label="Rain Stars">⭐</button>
+        <button class="emoji-btn" data-emoji="bubble" aria-label="Rain Bubbles">🫧</button>
+        <button class="emoji-btn" data-emoji="flower" aria-label="Rain Flowers">🌸</button>
+      </div>
+      <p class="credits">Made with ❤️ for you</p>
+    </footer>
+
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/messages.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/avatar.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
