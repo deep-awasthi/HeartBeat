@@ -89,13 +89,8 @@ class AppController {
         this.lockScreen.classList.add("unlocked");
       }
 
-      // Start quotes and note timers
+      // Start quotes cycling (first quote shows immediately)
       this.startRotations();
-
-      // Show dynamic bubble greeting
-      setTimeout(() => {
-        this.displaySpeechBubble("Welcome back, princess! I'm always here cheering for you. ❤️", true);
-      }, 1000);
 
     } else {
       // Shake input field and show warning
@@ -116,8 +111,15 @@ class AppController {
   }
 
   startRotations() {
-    // Setup general message rotations
+    // Show a random quote immediately, then keep cycling
+    this.showRandomQuoteNow();
     this.startGeneralMessageRotation();
+  }
+
+  showRandomQuoteNow() {
+    if (!this.engines.messages) return;
+    const msg = this.engines.messages.getNextGeneral();
+    this.displaySpeechBubble(msg, false);
   }
 
   updateGreeting() {
@@ -157,16 +159,17 @@ class AppController {
     }, 300);
   }
 
-  // Motivation Engine cycle: new message every 15-20 seconds
+  // Motivation Engine cycle: new random message every 5-8 seconds, never stops
   startGeneralMessageRotation() {
     if (this.messageTimer) clearTimeout(this.messageTimer);
 
     const scheduleNext = () => {
-      const delay = Math.random() * 5000 + 15000;
+      // Random delay between 5 and 8 seconds
+      const delay = Math.random() * 3000 + 5000;
       this.messageTimer = setTimeout(() => {
         const nextMsg = this.engines.messages.getNextGeneral();
         this.displaySpeechBubble(nextMsg, true);
-        scheduleNext();
+        scheduleNext(); // Always reschedule — never stops
       }, delay);
     };
 
